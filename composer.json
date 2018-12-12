@@ -1,6 +1,7 @@
 {
     "name": "imediatis/entity-annotation",
     "description": "This package helps you to implement annotation on your Model's object the way of Doctrine. -Helps you to validate your Object build from POST request; -Helps to auto-generate form fields.",
+    "version":"1.0.0",
     "type": "library",
     "license": "(LGPL-2.1-only or GPL-3.0-or-later)",
     "authors": [
