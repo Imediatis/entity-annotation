@@ -4,6 +4,7 @@
     "type": "library",
     "license": "(LGPL-2.1-only or GPL-3.0-or-later)",
     "version": "1.0.0",
+    "keywords": ["framework"],
     "authors": [
         {
             "name": "Sylvin KAMDEM",
