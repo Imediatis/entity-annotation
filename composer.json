@@ -21,5 +21,8 @@
         "psr-4": {
             "Imediatis\\EntityAnnotation\\": "src/EntityAnnotation/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
     }
 }
