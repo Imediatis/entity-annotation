@@ -10,6 +10,7 @@
 
 namespace Imediatis\EntityAnnotation;
 
+use DateTime;
 use Imediatis\EntityAnnotation\EConstant;
 
 /**
