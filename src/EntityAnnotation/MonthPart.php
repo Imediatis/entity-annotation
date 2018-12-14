@@ -1,8 +1,11 @@
 <?php
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of the Digitalis Software.
+ * 
+ * (c) IMEDIATIS <info@imediatis.net>
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Imediatis\EntityAnnotation;
@@ -16,18 +19,23 @@ use Imediatis\EntityAnnotation\EConstant;
  */
 class MonthPart
 {
-    public $year;
-    public $month;
-    public $fullmonth;
+    private $year;
+    private $month;
+    private $fullmonth;
     private $_isValideMonth;
 
+    /**
+     * Initialise une instance de MonthPart
+     *
+     * @param string $stringFull
+     */
     function __construct($stringFull)
     {
         $this->fullmonth = $stringFull;
         $this->buildMonthPart();
     }
-
-    public function buildMonthPart()
+    
+    private function buildMonthPart()
     {
         $parts = [];
         $this->_isValideMonth = false;
@@ -42,8 +50,8 @@ class MonthPart
     }
 
     /**
-     * 
-     * @return DateTime
+     * Convertit la valeur fournit en \DateTime
+     * @return \DateTime
      */
     public function toDateTime()
     {
@@ -53,10 +61,44 @@ class MonthPart
         return null;
     }
 
+    /**
+     * Indique si la valeur passé est une représentation valide de moi
+     *
+     * @return boolean
+     */
     function isValideMonth()
     {
         return $this->_isValideMonth;
     }
 
 
+
+    /**
+     * Get the value of year
+     * 
+     * @return string
+     */ 
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * Get the value of month
+     * @return string
+     */ 
+    public function getMonth()
+    {
+        return $this->month;
+    }
+
+    /**
+     * Get the value of fullMonth
+     *
+     * @return string
+     */ 
+    public function getFullmonth()
+    {
+        return $this->fullmonth;
+    }
 }
