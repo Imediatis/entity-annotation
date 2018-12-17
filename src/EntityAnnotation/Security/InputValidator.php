@@ -32,13 +32,15 @@ class InputValidator
      */
     public static $request;
     public static $usingSlim = false;
+    public static $inputMethode;
 
     public static function getParam($key, $filter = FILTER_DEFAULT, $options = null)
     {
+        self::$inputMethode = $_SERVER['REQUEST_METHOD'] === 'POST' ? INPUT_POST : INPUT_GET;
         if (self::$usingSlim) {
             return trim(self::$request->getParam($key));
         } else {
-            return trim(filter_input(INPUT_POST, $key, $filter, $options));
+            return trim(filter_input(self::$inputMethode, $key, $filter, $options));
         }
     }
 
