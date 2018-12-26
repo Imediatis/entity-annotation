@@ -44,7 +44,7 @@ class InputValidator
         }
     }
 
-    public static function InitSlimRequest(Request $request)
+    public static function InitSlimRequest(Request $request = null)
     {
         self::$request = $request;
         self::$usingSlim = !is_null($request);
