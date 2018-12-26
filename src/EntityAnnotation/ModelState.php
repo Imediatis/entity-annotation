@@ -11,29 +11,51 @@
 namespace Imediatis\EntityAnnotation;
 
 use Imediatis\EntityAnnotation\Attributes\DataType;
-use Imediatis\EntityAnnotation\Security\FormSecurity;
 use ReflectionClass;
+use Imediatis\EntityAnnotation\Security\InputValidator;
 
 /**
  * Permet d'évaluer le modèle
  *
  * @author Sylvin
  */
-class ModelState {
+class ModelState
+{
 
-    private static $errMsg    = [];
+    private static $errMsg = [];
     private static $_isValide = true;
 
-    public static function initModelState() {
-        self::$errMsg    = [];
+    /**
+     * Permet d'initialiser les champs de validation du modèle
+     *
+     * @return void
+     */
+    public static function initModelState()
+    {
+        self::$errMsg = [];
         self::$_isValide = true;
     }
 
-    public static function setValidity(bool $value) {
+    /**
+     * Permet de définir si le modèle en cours de traitement est valide ou pas
+     *
+     * @param boolean $value
+     * @return void
+     */
+    public static function setValidity(bool $value)
+    {
         self::$_isValide = $value;
     }
 
-    public static function setMessage($key, $msg) {
+    /**
+     * Permet de définir le message d'erreur issue à la validation d'un champ du modele
+     *
+     * @param string $key
+     * @param string $msg
+     * @return void
+     */
+    public static function setMessage($key, $msg)
+    {
         self::$errMsg[$key] = $msg;
     }
 
@@ -42,12 +64,12 @@ class ModelState {
      * @param object $model Objet dont on veut déterminer la validité.
      * @return bool
      */
-    public static function isValid($model = null): bool {
+    public static function isValid($model = null) : bool
+    {
         if (!is_null($model)) {
             self::initModelState();
-            $rmodel     = new ReflectionClass($model);
+            $rmodel = new ReflectionClass($model);
             $properties = $rmodel->getProperties();
-            //$prop       = new \ReflectionProperty('sl', 'lsk');
             foreach ($properties as $prop) {
                 $pannotation = AnnotationReader::getPropertyAnnotation($prop);
                 if (is_null($pannotation)) {
@@ -78,20 +100,20 @@ class ModelState {
                     case DataType::DATETIME:
                     case DataType::DATE:
                         $value = !is_null($value) ? $value->format(Data::EN_DateTimeFormat) : null;
-                        if (!FormSecurity::isValidDate($value)) {
+                        if (!InputValidator::isValidDate($value)) {
                             self::setValidity(false);
                             self::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                         }
                         break;
                     case DataType::MONTH:
                         $value = !is_null($value) ? $value->format('Y-m-d') : null;
-                        if (!FormSecurity::isValidDate($value)) {
+                        if (!InputValidator::isValidDate($value)) {
                             self::setValidity(false);
                             self::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                         }
                         break;
                     case DataType::TIME:
-                        if (!FormSecurity::isValidTime($value)) {
+                        if (!InputValidator::isValidTime($value)) {
                             self::setValidity(false);
                             self::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                         }
@@ -99,19 +121,19 @@ class ModelState {
                     case DataType::INTEGER:
                     case DataType::INT:
                     case DataType::NUMBER:
-                        if (!FormSecurity::isInt($value)) {
+                        if (!InputValidator::isInt($value)) {
                             self::setValidity(false);
                             self::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                         }
                         break;
                     case DataType::FLOAT:
-                        if (!FormSecurity::isPrice($value)) {
+                        if (!InputValidator::isPrice($value)) {
                             self::setValidity(false);
                             self::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                         }
                         break;
                     case DataType::EMAIL:
-                        if (!FormSecurity::isEmail($value)) {
+                        if (!InputValidator::isEmail($value)) {
                             self::setValidity(false);
                             self::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                         }
@@ -141,7 +163,8 @@ class ModelState {
      * Retourne toutes les erreurs associées à la validation d'un modèle quelconque
      * @return array Tableau associatif des erreurs associées au modèle
      */
-    public static function getErrors(): array {
+    public static function getErrors() : array
+    {
         return self::$errMsg;
     }
 
@@ -150,7 +173,8 @@ class ModelState {
      * @param type $propertyName Champ dont on veut extraire le message d'erreur associé
      * @return string
      */
-    public static function getError($propertyName): string {
+    public static function getError($propertyName) : string
+    {
         if (isset(self::$errMsg[$propertyName])) {
             return self::$errMsg[$propertyName];
         } else {

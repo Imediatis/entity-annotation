@@ -34,7 +34,7 @@ class MonthPart
         $this->fullmonth = $stringFull;
         $this->buildMonthPart();
     }
-    
+
     private function buildMonthPart()
     {
         $parts = [];
@@ -56,7 +56,7 @@ class MonthPart
     public function toDateTime()
     {
         if ($this->_isValideMonth) {
-            return new DateTime($this->year . '-' . $this->month . '-01');
+            return new \DateTime($this->year . '-' . $this->month . '-01');
         }
         return null;
     }
@@ -77,7 +77,7 @@ class MonthPart
      * Get the value of year
      * 
      * @return string
-     */ 
+     */
     public function getYear()
     {
         return $this->year;
@@ -86,7 +86,7 @@ class MonthPart
     /**
      * Get the value of month
      * @return string
-     */ 
+     */
     public function getMonth()
     {
         return $this->month;
@@ -96,7 +96,7 @@ class MonthPart
      * Get the value of fullMonth
      *
      * @return string
-     */ 
+     */
     public function getFullmonth()
     {
         return $this->fullmonth;

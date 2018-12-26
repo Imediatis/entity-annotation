@@ -151,6 +151,12 @@ class InputValidator
         return $mparts->isValideMonth();
     }
 
+    /**
+     * Détermine si le temps passé en paramètre est un temps valide
+     *
+     * @param string $time
+     * @return boolean
+     */
     public static function isValidTime($time)
     {
         $parts = [];

@@ -181,7 +181,7 @@ class DatePart
      * Get date
      *
      * @return  string
-     */ 
+     */
     public function getDate()
     {
         return $this->date;
@@ -191,7 +191,7 @@ class DatePart
      * Get represent the full time of the given value
      *
      * @return  string
-     */ 
+     */
     public function getFullTime()
     {
         return $this->fullTime;
@@ -201,7 +201,7 @@ class DatePart
      * Get reprent the day of the given date
      *
      * @return  int
-     */ 
+     */
     public function getDay()
     {
         return $this->day;
@@ -211,7 +211,7 @@ class DatePart
      * Get represent seconds of the given date
      *
      * @return  int
-     */ 
+     */
     public function getSecond()
     {
         return $this->second;
@@ -221,7 +221,7 @@ class DatePart
      * Get represent tierce of the given date
      *
      * @return  string
-     */ 
+     */
     public function getTierce()
     {
         return $this->tierce;
@@ -231,7 +231,7 @@ class DatePart
      * Get represent minutes of the given date
      *
      * @return  int
-     */ 
+     */
     public function getMinute()
     {
         return $this->minute;
@@ -241,7 +241,7 @@ class DatePart
      * Get represent hour of the given date
      *
      * @return  int
-     */ 
+     */
     public function getHour()
     {
         return $this->hour;
@@ -251,7 +251,7 @@ class DatePart
      * Get represent the time of the given date
      *
      * @return  int
-     */ 
+     */
     public function getTime()
     {
         return $this->time;
@@ -261,7 +261,7 @@ class DatePart
      * Get represent the year of the given date
      *
      * @return  int
-     */ 
+     */
     public function getYear()
     {
         return $this->year;
@@ -271,7 +271,7 @@ class DatePart
      * Get represent the month of the given date
      *
      * @return  int
-     */ 
+     */
     public function getMonth()
     {
         return $this->month;

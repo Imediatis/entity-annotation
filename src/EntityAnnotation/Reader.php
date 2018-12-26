@@ -29,7 +29,7 @@ interface Reader
      *
      * @return Annotation|null The Annotation or NULL, if the requested annotation does not exist.
      */
-    static function getClassAnnotation(\ReflectionClass $class);
+    static function getClassAnnotation(ReflectionClass $class);
 
     /**
      * Gets the annotations applied to a method.

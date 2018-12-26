@@ -18,6 +18,12 @@ class LabelAttribute
     public $text;
     public $function;
 
+    /**
+     * Initialise une instance de LabelAttribute
+     *
+     * @param string $text Texte du label
+     * @param mixed $function Fontion à appeler lorsque pour générer le texte du label
+     */
     public function __construct($text, $function = null)
     {
         $this->text = $text;

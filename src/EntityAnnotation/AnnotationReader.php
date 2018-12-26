@@ -41,7 +41,7 @@ class AnnotationReader implements Reader
      * @param ReflectionClass $class
      * @return Annotation
      */
-    public static function getClassAnnotation(ReflectionClass $class)
+    public static function getClassAnnotation(\ReflectionClass $class)
     {
         $tannotation = self::filterAnnotation($class->getDocComment());
         if (count($tannotation) > 0) {
@@ -58,7 +58,7 @@ class AnnotationReader implements Reader
      * @param boolean $usingSlim Détermine si le framework Slim est utilisé.Valeur par défaut FALSE
      * @return Annotation
      */
-    public static function getPropertyAnnotation(ReflectionProperty $property, $usingSlim = false)
+    public static function getPropertyAnnotation(\ReflectionProperty $property, $usingSlim = false)
     {
         $tannotation = self::filterAnnotation($property->getDocComment());
         if (count($tannotation) > 0) {

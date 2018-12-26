@@ -35,9 +35,9 @@ class LengthAttribute extends Attribute
     /**
      * Initialise l'annotation Length pour une classe/attribut
      * @param string $context Classe/attribut de classe pour lequel l'annotation est définit
-     * @param type $max Longueur maximale de la chaîne de caractère
-     * @param type $min Longueur minimale de la chaîne de caractère
-     * @param type $errMsg Message d'erreur en cas de non conformité
+     * @param integer $max Longueur maximale de la chaîne de caractère
+     * @param integer $min Longueur minimale de la chaîne de caractère
+     * @param string $errMsg Message d'erreur en cas de non conformité
      */
     public function __construct(string $context, $max, $min = 0, $errMsg = null)
     {
