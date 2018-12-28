@@ -106,6 +106,17 @@ class InputValidator
     }
 
     /**
+     * Permet de valider si la valeur passée est une adresse de site web  valide (www.toto.com)
+     *
+     * @param string $website
+     * @return boolean
+     */
+    public static function isWebsite($website)
+    {
+        return preg_match(EConstant::REG_WEBSITE, $website);
+    }
+
+    /**
      * Valide si une variable qui lui est passé correspond à notre charte accepté pour les noms
      *
      * @param string $name valeur à valider
