@@ -29,6 +29,7 @@ class EConstant
   const REG_GENDER = "/^[FM]{1}$/";
   const REG_EMAIL = "/^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/";
   const REG_WEBSITE = "/^www\.[a-z][a-z0-9\-]*[a-z]+\.[a-z]{2,}$/i";
+  const REG_WEBSITE_e = "/www\.[a-z][a-z0-9\-]*[a-z]+\.[a-z]{2,}/i";
   const REG_DIGIT_ONLY = "/^\d+$/";
   const REG_NUMERIC = "/^-?(0|([1-9](\d*)?))([.,]\d*+)?$/";
   const REG_DIGIT_SPACE = "/^\d[\d ]*\d$/";
