@@ -106,6 +106,23 @@ class InputValidator
     }
 
     /**
+     * Détermine si une adresse mail/url site web/domain a un nom de domaine valide
+     *
+     * @param string $param 
+     * @return boolean
+     */
+    public static function isValidDomainForEmail($param)
+    {
+        if (self::isEmail($param)) {
+            return checkdnsrr(explode('@', $param)[1], 'MX') && count(dns_get_record(explode('@', $param)[1], DNS_MX)) > 0;
+        }
+        if (preg_match_all("/^(www\.)?([a-z0-9][a-z0-9\-]*[a-z]+\.[a-z]{2,})$/i", $param, $matches)) {
+            return checkdnsrr($matches[2][0], 'MX') && count(dns_get_record($matches[2][0], DNS_MX)) > 0;
+        }
+        return false;
+    }
+
+    /**
      * Permet de valider si la valeur passée est une adresse de site web  valide (www.toto.com)
      *
      * @param string $website
