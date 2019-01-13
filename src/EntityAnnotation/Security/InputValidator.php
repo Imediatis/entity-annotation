@@ -412,16 +412,15 @@ class InputValidator
                         ModelState::setValidity(false);
                         ModelState::setMessage($prop->getName(), $pannotation->length->getError());
                     }
-                } else
-                    if (!is_null($defValue)) {
+                } elseif (!is_null($defValue)) {
                     if (strlen($defValue) < $pannotation->length->min || strlen($defValue) > $pannotation->length->max) {
                         ModelState::setValidity(false);
                         ModelState::setMessage($prop->getName(), $pannotation->length->getError());
                     }
-                } else {
+                }/* else {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->length->getError());
-                }
+                }*/
             }
 
             $output->{$prop->getName()} = is_null($value) ? $defValue : $value;
