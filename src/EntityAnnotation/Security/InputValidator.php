@@ -424,14 +424,14 @@ class InputValidator
                     ModelState::setMessage($prop->getName(), $pannotation->length->getError());
                 }*/
             }
-
-            $output->{$prop->getName()} = is_null($value) ? $defValue : $value;
             if (in_array($pannotation->dataType->type, DataType::collection())) {
                 if ((!$pannotation->dataType->nullable && !$hasRequire) && is_null($value)) {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                 }
             }
+            $output->{$prop->getName()} = is_null($value) ? $defValue : $value;
+
         }
 
         return $output;
