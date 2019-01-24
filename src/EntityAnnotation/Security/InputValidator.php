@@ -400,7 +400,9 @@ class InputValidator
             $value = $methode($prop->getName());
             $defValue = $prop->getValue($output);
 
+            $hasRequire = false;
             if (!is_null($pannotation->required)) {
+                $hasRequire = true;
                 if (is_null($value) && is_null($defValue)) {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->required->getError());
@@ -425,7 +427,7 @@ class InputValidator
 
             $output->{$prop->getName()} = is_null($value) ? $defValue : $value;
             if (in_array($pannotation->dataType->type, DataType::collection())) {
-                if (!$pannotation->dataType->nullable && is_null($value)) {
+                if ((!$pannotation->dataType->nullable && !$hasRequire) && is_null($value)) {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                 }
