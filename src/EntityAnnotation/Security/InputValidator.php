@@ -425,7 +425,7 @@ class InputValidator
                 }*/
             }
             if (in_array($pannotation->dataType->type, DataType::collection())) {
-                if ((!$pannotation->dataType->nullable && !$hasRequire) && is_null($value)) {
+                if ((!$pannotation->dataType->nullable /*&& !$hasRequire*/ ) && is_null($value)) {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                 }
