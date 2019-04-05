@@ -38,9 +38,11 @@ class InputValidator
     {
         self::$inputMethode = $_SERVER['REQUEST_METHOD'] === 'POST' ? INPUT_POST : INPUT_GET;
         if (self::$usingSlim) {
-            return trim(self::$request->getParam($key));
+            $value = self::$request->getParam($key);
+            return !is_array($value) ? trim($value) : $value;
         } else {
-            return trim(filter_input(self::$inputMethode, $key, $filter, $options));
+            $value = filter_input(self::$inputMethode, $key, $filter, $options);
+            return !is_null($value) ? trim($value) : $value;
         }
     }
 
@@ -326,7 +328,7 @@ class InputValidator
     public static function getFloat($varname)
     {
         $out = self::getParam($varname, FILTER_SANITIZE_NUMBER_FLOAT);
-        $val = preg_match('/^0(\.|,0)?$/', $val) ? 0 : $val;
+        $out = preg_match('/^0(\.|,0)?$/', $out) ? 0 : $out;
         return self::isPrice($out) ? $out : null;
     }
 
@@ -419,22 +421,20 @@ class InputValidator
                         ModelState::setValidity(false);
                         ModelState::setMessage($prop->getName(), $pannotation->length->getError());
                     }
-                }/* else {
+                } /* else {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->length->getError());
                 }*/
             }
             if (in_array($pannotation->dataType->type, DataType::collection())) {
-                if ((!$pannotation->dataType->nullable /*&& !$hasRequire*/ ) && is_null($value)) {
+                if ((!$pannotation->dataType->nullable /*&& !$hasRequire*/) && is_null($value)) {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                 }
             }
             $output->{$prop->getName()} = is_null($value) ? $defValue : $value;
-
         }
 
         return $output;
     }
-
 }
