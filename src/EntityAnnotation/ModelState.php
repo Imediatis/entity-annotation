@@ -11,8 +11,8 @@
 namespace Imediatis\EntityAnnotation;
 
 use Imediatis\EntityAnnotation\Attributes\DataType;
-use ReflectionClass;
 use Imediatis\EntityAnnotation\Security\InputValidator;
+use ReflectionClass;
 
 /**
  * Permet d'évaluer le modèle
@@ -56,7 +56,11 @@ class ModelState
      */
     public static function setMessage($key, $msg)
     {
-        self::$errMsg[$key] = $msg;
+        $tmsg[] = $msg;
+        if (isset(self::$errMsg[$key])) {
+            $tmsg[] = self::$errMsg[$key];
+        }
+        self::$errMsg[$key] = join("; ", $tmsg);
     }
 
     /**
@@ -64,7 +68,7 @@ class ModelState
      * @param object $model Objet dont on veut déterminer la validité.
      * @return bool
      */
-    public static function isValid($model = null) : bool
+    public static function isValid($model = null): bool
     {
         if (!is_null($model)) {
             self::initModelState();
@@ -163,7 +167,7 @@ class ModelState
      * Retourne toutes les erreurs associées à la validation d'un modèle quelconque
      * @return array Tableau associatif des erreurs associées au modèle
      */
-    public static function getErrors() : array
+    public static function getErrors(): array
     {
         return self::$errMsg;
     }
@@ -173,7 +177,7 @@ class ModelState
      * @param type $propertyName Champ dont on veut extraire le message d'erreur associé
      * @return string
      */
-    public static function getError($propertyName) : string
+    public static function getError($propertyName): string
     {
         if (isset(self::$errMsg[$propertyName])) {
             return self::$errMsg[$propertyName];
@@ -181,5 +185,4 @@ class ModelState
             return '';
         }
     }
-
 }
