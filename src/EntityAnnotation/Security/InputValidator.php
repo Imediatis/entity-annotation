@@ -118,6 +118,7 @@ class InputValidator
         if (self::isEmail($param)) {
             return checkdnsrr(explode('@', $param)[1], 'MX') && count(dns_get_record(explode('@', $param)[1], DNS_MX)) > 0;
         }
+        $matches = [];
         if (preg_match_all("/^(www\.)?([a-z0-9][a-z0-9\-]*[a-z]+\.[a-z]{2,})$/i", $param, $matches)) {
             return checkdnsrr($matches[2][0], 'MX') && count(dns_get_record($matches[2][0], DNS_MX)) > 0;
         }
@@ -427,7 +428,7 @@ class InputValidator
                 }*/
             }
             if (in_array($pannotation->dataType->type, DataType::collection())) {
-                if ((!$pannotation->dataType->nullable /*&& !$hasRequire*/) && is_null($value)) {
+                if ((!$pannotation->dataType->nullable ) && is_null($value)) {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                 }
