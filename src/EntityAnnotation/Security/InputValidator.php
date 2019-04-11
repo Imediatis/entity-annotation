@@ -218,6 +218,13 @@ class InputValidator
      */
     public static function isNull($param)
     {
+        if (is_array($param)) {
+            return count(array_filter($param, function ($v) {
+                return !is_array($v) ? (trim($v) != "" ? trim($v) : null) : array_filter($v, function ($sv) {
+                    return trim($sv) != null ? trim($sv) : null;
+                });
+            })) == 0;
+        }
         return trim($param) == '' || preg_match(EConstant::REG_NULL, $param);
     }
 
@@ -428,7 +435,7 @@ class InputValidator
                 }*/
             }
             if (in_array($pannotation->dataType->type, DataType::collection())) {
-                if ((!$pannotation->dataType->nullable ) && is_null($value)) {
+                if ((!$pannotation->dataType->nullable) && is_null($value)) {
                     ModelState::setValidity(false);
                     ModelState::setMessage($prop->getName(), $pannotation->dataType->getErrMsg());
                 }
