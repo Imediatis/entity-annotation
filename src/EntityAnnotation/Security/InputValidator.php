@@ -397,6 +397,7 @@ class InputValidator
         $properties = $refClass->getProperties();
         //$prop       = new \ReflectionProperty('sl', 'lsk');
         foreach ($properties as $prop) {
+            $prop->setAccessible(true);
             $pannotation = AnnotationReader::getPropertyAnnotation($prop, !is_null($request));
             if (is_null($pannotation)) {
                 $value = self::getParam($prop->getName(), FILTER_SANITIZE_STRING);
