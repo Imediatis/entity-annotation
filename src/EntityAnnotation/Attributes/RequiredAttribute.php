@@ -30,6 +30,7 @@ class RequiredAttribute extends Attribute
 
     public function getError()
     {
-        return is_null($this->errMsg) ? sprintf("Le champ %s est obligatoire", $this->getContext()) : $this->errMsg;
+        //return is_null($this->errMsg) ? sprintf( "Le champ %s est obligatoire", $this->getContext()) : $this->errMsg;
+        return is_null($this->errMsg) ? 'required field' : $this->errMsg;
     }
 }

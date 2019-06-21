@@ -50,22 +50,22 @@ class LengthAttribute extends Attribute
      * Retourne le message d'erreur pour la longueur min de la chaine
      * @return string
      */
-    public function getMinError() : string
+    public function getMinError(): string
     {
-        return !is_null($this->errMsg) ? $this->errMsg : sprintf('le champ %s require au moins %d caratères', $this->getContext(), $this->min);
+        return !is_null($this->errMsg) ? $this->errMsg : sprintf('min length %d caracter(s)', $this->min);
     }
 
     /**
      * Retourne le message d'erreur pour la longueur max de la chaine
      * @return string
      */
-    public function getMaxError() : string
+    public function getMaxError(): string
     {
-        return !is_null($this->errMsg) ? $this->errMsg : sprintf('le champ %s require au moins %d caratères', $this->getContext(), $this->max);
+        return !is_null($this->errMsg) ? $this->errMsg : sprintf('max length %d caracter(s)', $this->max);
     }
 
     public function getError()
     {
-        return !is_null($this->errMsg) ? $this->errMsg : sprintf('le champ %s require au moins %d caratères et au plus %d caractères', $this->getContext(), $this->min, $this->max);
+        return !is_null($this->errMsg) ? $this->errMsg : sprintf('min length %d caracter(s), max lenght %d caracter(s)', $this->min, $this->max);
     }
 }

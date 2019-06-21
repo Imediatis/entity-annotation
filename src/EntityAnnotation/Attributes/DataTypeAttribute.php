@@ -112,7 +112,7 @@ class DataTypeAttribute extends Attribute
 
     public function getErrMsg()
     {
-        return is_null($this->errMsg) ? sprintf("La donnée fournie pour %s n'est pas conforme au format attendu", $this->getContext()) : $this->errMsg;
+        //return is_null($this->errMsg) ? sprintf("La donnée fournie pour %s n'est pas conforme au format attendu", $this->getContext()) : $this->errMsg;
+        return is_null($this->errMsg) ? "invalid-dat-type" : $this->errMsg;
     }
-
 }
