@@ -310,6 +310,7 @@ class InputValidator
     public static function getEmail($varname)
     {
         $val = self::getParam($varname, FILTER_SANITIZE_EMAIL);
+        $rval = self::getParam($varname);
         return self::isEmail($val) ? $val : null;
     }
 
@@ -374,7 +375,7 @@ class InputValidator
             if (is_bool($val)) {
                 return $val;
             } else {
-                return strtolower($val) == 'true';
+                return strtolower($val) == 'true' || $val == 1;
             }
         }
         return null;

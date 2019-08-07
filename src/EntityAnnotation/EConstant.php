@@ -49,7 +49,7 @@ class EConstant
   const REG_PRICE = "/^((\+|-)?(0|([1-9]\d*)))([.,]\d+)?$/";
   const REG_PHONE = "/^(237)?(6(((8[0-9])|(7[0-9])|(5[0-4])|(9[0-9])|(5[5-9]))[0-9]{6,6}))|(66[0-9]{7,7})$/";
   const REG_NULL = "/^(\s*(null)?\s*)$/i";
-  const REG_BOOL = "/^(\s*true|false\s*)$/i";
+  const REG_BOOL = "/^(\s*(true|false|0|1)\s*)$/i";
   const REG_MSG = "/^([a-zA-Z0-9éèàêâùïüë ]([\w -éèàêâùïüë'.])*[a-zA-Z0-9éèàêâùïüë])+$/i";
   const REG_VALID_ID = "/^[1-9]\d*$/";
   const REG_ACCID = "/^[1-9]\d{13}$/";
@@ -77,5 +77,4 @@ class EConstant
   public static $REPLACE_SWITCH_CHARACTER = array(
     'e', 'i', 'a', 'o', 'n', 'c', 'b', 'u', '(', ')', '-', '\'', ' ', ''
   );
-
 }
