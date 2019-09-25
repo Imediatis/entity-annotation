@@ -56,7 +56,7 @@ class EConstant
   const REG_TRADENAME = "/^[\w ]{3,11}$/";
   const REG_LOGIN = "/^([a-zA-Z1-9][\w_]*){6,10}$/";
   const REG_DUPLICATE_DB = "/SQLSTATE\[[0-9]+\]:/";
-  const REG_MASK_BASIC_AUTH = "/^Basic [\w]+$/";
+  const REG_MASK_BASIC_AUTH = "/^Basic [\w=]+$/";
 
   public static $REG_SWITCH_CHARACTER = array(
     '/(ê|ë|Ξ|Σ)+/i',
