@@ -39,10 +39,10 @@ class InputValidator
         self::$inputMethode = $_SERVER['REQUEST_METHOD'] === 'POST' ? INPUT_POST : INPUT_GET;
         if (self::$usingSlim) {
             $value = self::$request->getParam($key);
-            return !is_array($value) ? trim($value) : $value;
+            return (!is_array($value) && !is_bool($value)) ? trim($value) : $value;
         } else {
             $value = filter_input(self::$inputMethode, $key, $filter, $options);
-            return !is_null($value) ? trim($value) : $value;
+            return !is_null($value) ? ((!is_array($value) && !is_bool($value)) ? trim($value):$value) : $value;
         }
     }
 
